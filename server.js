@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   "http://localhost:5173", // dev
-  "https://rajgram-school-frontend-dashboard-9.vercel.app/api", // vercel prod
+  "https://rajgram-school-frontend-dashboard-9.vercel.app", // vercel prod
 ];
 const corsOptions = {
   origin: function (origin, callback) {
