@@ -20,9 +20,23 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const corsOption = { exposedHeaders: "Authorization" };
-app.use(cors(corsOption));
+const allowedOrigins = [
+  "http://localhost:5173", // dev
+  "https://rajgram-school-frontend-dashboard-9.vercel.app", // vercel prod
+];
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow requests with no origin (like curl, Postman) or match list
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed from this origin"));
+    }
+  },
+  credentials: true, // only if you need cookies/auth headers
+  exposedHeaders: ["Authorization"], // keep your exposed header
+};
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 // MongoDB Connection
