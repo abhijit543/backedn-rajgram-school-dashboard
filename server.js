@@ -56,7 +56,10 @@ app.use("/api/student", studentRouter);
 app.use("/api/manageteacher", teacherRouter);
 app.use("/api/schedule", scheduleRouter);
 app.use("/api/notice", noticeRouter);
-
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(err.status || 500).json({ error: err.message || "Server error" });
+});
 // Start Server
 export default app;
 
