@@ -3,7 +3,7 @@ import formidable from "formidable";
 import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
-import Teacher from "../models/Teacher.model.js";
+import Teacher from "../models/teacher.model.js";
 import cloudinary from "../utils/cloudinary.js";
 
 export const registerTeacher = async (req, res) => {
